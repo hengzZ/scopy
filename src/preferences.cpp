@@ -73,7 +73,8 @@ Preferences::Preferences(QWidget *parent) :
 	m_colorEditor(nullptr),
 	m_logging_enabled(false),
 	m_show_plot_fps(false),
-	m_use_open_gl(false)
+	m_use_open_gl(false),
+	m_target_fps(60)
 {
 	ui->setupUi(this);
 
@@ -443,6 +444,16 @@ void Preferences::resetScopy()
 	if (ret == QMessageBox::Ok) {
 		Q_EMIT reset();
 	}
+}
+
+double Preferences::getTarget_fps() const
+{
+	return m_target_fps;
+}
+
+void Preferences::setTarget_fps(double newTarget_fps)
+{
+	m_target_fps = newTarget_fps;
 }
 
 bool Preferences::getUse_open_gl() const
@@ -1048,4 +1059,14 @@ void Preferences_API::setUseOpenGl(const bool& val)
 {
 	preferencePanel->m_use_open_gl = val;
 	qputenv("SCOPY_USE_OPENGL",QByteArray::number(val));
+}
+
+double Preferences_API::getTargetFps() const
+{
+	return preferencePanel->m_target_fps;
+}
+
+void Preferences_API::setTargetFps(const double &val)
+{
+	preferencePanel->m_target_fps = val;
 }
