@@ -8,6 +8,7 @@ environment:
     BUILD_NO: $(APPVEYOR_BUILD_NUMBER)
     BRANCH: $(APPVEYOR_REPO_BRANCH)
     REPO: $(APPVEYOR_REPO_NAME)
+    GITHUB_WORKSPACE: C:\projects\scopy
     matrix:
         - ARCH: x86_64
           ARCH_BIT: 64
