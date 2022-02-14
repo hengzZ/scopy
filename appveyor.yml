@@ -9,6 +9,7 @@ environment:
     BRANCH: $(APPVEYOR_REPO_BRANCH)
     REPO: $(APPVEYOR_REPO_NAME)
     GITHUB_WORKSPACE: C:\projects\scopy
+    ARTIFACT_FOLDER: C:\projects\scopy\artifact_x86_64
     matrix:
         - ARCH: x86_64
           ARCH_BIT: 64
@@ -26,9 +27,9 @@ build_script:
     - cmd: mkdir %GITHUB_WORKSPACE%\artifacts & echo %GITHUB_WORKSPACE% & docker run -v %cd%:C:\msys64\home\docker\scopy:rw -v %GITHUB_WORKSPACE%\artifacts:C:\msys64\home\docker\artifact_x86_64:rw -e GITHUB_WORKSPACE=%GITHUB_WORKSPACE% analogdevices/scopy-build:mingw64 C:\msys64\usr\bin\bash.exe -c '/home/docker/scopy/CI/appveyor/inside_mingw_docker.sh'
 
 artifacts:
-  - path: ${{ github.workspace }}\artifacts\scopy-x86_64.zip
+  - path: $(ARTIFACT_FOLDER)\scopy-x86_64.zip
     name: scopy-x86_64.zip
-  - path: ${{ github.workspace }}\artifacts\scopy-64-setup.exe
+  - path: $(ARTIFACT_FOLDER)\scopy-64-setup.exe
     name: scopy-x86_64-setup.exe
 
 #on_finish:
