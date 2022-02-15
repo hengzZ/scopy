@@ -21,7 +21,6 @@ DLL_DEPS=$(cat $SRC_FOLDER/CI/appveyor/mingw_dll_deps)
 rm -rf $DEST_FOLDER
 rm -rf $BUILD_FOLDER
 rm -rf $DEBUG_FOLDER
-rm -rf $ARTIFACT_FOLDER
 
 
 echo "### Building Scopy "
