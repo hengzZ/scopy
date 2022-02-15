@@ -18,13 +18,20 @@ PYTHON_FILES=/$MINGW_VERSION/lib/python3.*
 DLL_DEPS=$(cat $SRC_FOLDER/CI/appveyor/mingw_dll_deps)
 
 
-
 echo "### Building Scopy "
 mkdir -p $BUILD_FOLDER
 cd $BUILD_FOLDER
 $CMAKE $RC_COMPILER_OPT -DBREAKPAD_HANDLER=ON -DWITH_DOC=ON -DPYTHON_EXECUTABLE=/$MINGW_VERSION/bin/python3.exe $SRC_FOLDER
-# $MAKE_BIN  -j 4
-$MAKE_BIN
+
+# ADD BY: zhiheng (install tinyiiod)
+git clone https://github.com/analogdevicesinc/libtinyiiod.git
+cd libtinyiiod
+mkdir build && cd build
+$CMAKE -DBUILD_EXAMPLES=OFF ..
+$MAKE_BIN 
+$MAKE_BIN  install
+
+$MAKE_BIN  -j 4
 
 
 echo "### Deploying application and dependencies"
