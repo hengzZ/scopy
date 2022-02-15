@@ -23,7 +23,8 @@ echo "### Building Scopy "
 mkdir -p $BUILD_FOLDER
 cd $BUILD_FOLDER
 $CMAKE $RC_COMPILER_OPT -DBREAKPAD_HANDLER=ON -DWITH_DOC=ON -DPYTHON_EXECUTABLE=/$MINGW_VERSION/bin/python3.exe $SRC_FOLDER
-$MAKE_BIN  -j 4
+# $MAKE_BIN  -j 4
+$MAKE_BIN
 
 
 echo "### Deploying application and dependencies"
