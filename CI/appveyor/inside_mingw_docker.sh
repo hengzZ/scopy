@@ -36,6 +36,8 @@ $CMAKE -DBUILD_EXAMPLES=OFF ..
 $MAKE_BIN 
 $MAKE_BIN  install
 
+# goto BUILD_FOLDER and build
+cd $BUILD_FOLDER
 $MAKE_BIN  -j 4
 
 
